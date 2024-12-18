@@ -1,71 +1,71 @@
 //prims --------------------------------
 
-//#include <stdio.h>
-//#include <limits.h>
-//
-//#define MAX 100
-//
-//void primMST(int graph[MAX][MAX], int vertices) {
-//    int parent[MAX]; // Array to store the MST
-//    int key[MAX];    // Minimum weight edge for each vertex
-//    int inMST[MAX];  // To check if a vertex is in MST
-//
-//    for (int i = 0; i < vertices; i++) {
-//        key[i] = INT_MAX;
-//        inMST[i] = 0;
-//    }
-//
-//    key[0] = 0;      // Start from the first vertex
-//    parent[0] = -1;  // First node is the root
-//
-//    for (int count = 0; count < vertices - 1; count++) {
-//        int min = INT_MAX, u;
-//
-//        // Find the minimum key vertex not yet in MST
-//        for (int v = 0; v < vertices; v++) {
-//            if (!inMST[v] && key[v] < min) {
-//                min = key[v];
-//                u = v;
-//            }
-//        }
-//
-//        inMST[u] = 1;
-//
-//        // Update the key and parent for the adjacent vertices
-//        for (int v = 0; v < vertices; v++) {
-//            if (graph[u][v] && !inMST[v] && graph[u][v] < key[v]) {
-//                parent[v] = u;
-//                key[v] = graph[u][v];
-//            }
-//        }
-//    }
-//
-//    // Print the MST
-//    printf("Edge \tWeight\n");
-//    for (int i = 1; i < vertices; i++) {
-//        printf("%d - %d \t%d\n", parent[i], i, graph[i][parent[i]]);
-//    }
-//}
-//
-//int main() {
-//    int vertices;
-//    int graph[MAX][MAX];
-//
-//    printf("Enter the number of vertices: ");
-//    scanf("%d", &vertices);
-//
-//    printf("Enter the adjacency matrix (use 0 for no edge):\n");
-//    for (int i = 0; i < vertices; i++) {
-//        for (int j = 0; j < vertices; j++) {
-//            scanf("%d", &graph[i][j]);
-//        }
-//    }
-//
-//    printf("\nMinimum Spanning Tree (MST):\n");
-//    primMST(graph, vertices);
-//
-//    return 0;
-//}
+#include <stdio.h>
+#include <limits.h>
+
+#define MAX 100
+
+void primMST(int graph[MAX][MAX], int vertices) {
+    int parent[MAX]; // Array to store the MST
+    int key[MAX];    // Minimum weight edge for each vertex
+    int inMST[MAX];  // To check if a vertex is in MST
+
+    for (int i = 0; i < vertices; i++) {
+        key[i] = INT_MAX;
+        inMST[i] = 0;
+    }
+
+    key[0] = 0;      // Start from the first vertex
+    parent[0] = -1;  // First node is the root
+
+    for (int count = 0; count < vertices - 1; count++) {
+        int min = INT_MAX, u;
+
+        // Find the minimum key vertex not yet in MST
+        for (int v = 0; v < vertices; v++) {
+            if (!inMST[v] && key[v] < min) {
+                min = key[v];
+                u = v;
+            }
+        }
+
+        inMST[u] = 1;
+
+        // Update the key and parent for the adjacent vertices
+        for (int v = 0; v < vertices; v++) {
+            if (graph[u][v] && !inMST[v] && graph[u][v] < key[v]) {
+                parent[v] = u;
+                key[v] = graph[u][v];
+            }
+        }
+    }
+
+    // Print the MST
+    printf("Edge \tWeight\n");
+    for (int i = 1; i < vertices; i++) {
+        printf("%d - %d \t%d\n", parent[i], i, graph[i][parent[i]]);
+    }
+}
+
+int main() {
+    int vertices;
+    int graph[MAX][MAX];
+
+    printf("Enter the number of vertices: ");
+    scanf("%d", &vertices);
+
+    printf("Enter the adjacency matrix (use 0 for no edge):\n");
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            scanf("%d", &graph[i][j]);
+        }
+    }
+
+    printf("\nMinimum Spanning Tree (MST):\n");
+    primMST(graph, vertices);
+
+    return 0;
+}
 
 // Kruskals -------------------------------------
 
